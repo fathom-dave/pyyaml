@@ -11,10 +11,6 @@ on:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 
-env:
-  LIBYAML_REPO: https://github.com/yaml/libyaml
-  LIBYAML_REF: 0.2.5
-
 jobs:
   python_sdist:
     name: pyyaml sdist
@@ -28,10 +24,13 @@ jobs:
       with:
         python-version: 3.x
 
+    - name: Install and Test
+      run: |
+        python -m pip install --upgrade pip setuptools wheel
+        python setup.py install
+        python setup.py test
+
     - name: Build sdist
-      env:
-        PYYAML_FORCE_CYTHON: 1
-        PYYAML_FORCE_LIBYAML: 0
       run: |
         python -V
         python -m pip install build
