@@ -28,6 +28,11 @@ jobs:
       with:
         python-version: 3.x
 
+    - name: Install and Test
+      run: |
+        python setup.py install
+        python setup.py test
+
     - name: Build sdist
       env:
         PYYAML_FORCE_CYTHON: 1
