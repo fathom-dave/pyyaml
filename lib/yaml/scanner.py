@@ -137,7 +137,6 @@ class Scanner:
         while self.need_more_tokens():
             self.fetch_more_tokens()
         if self.tokens:
-            self.tokens_taken += 1
             return self.tokens.pop(0)
 
     # Private methods.
